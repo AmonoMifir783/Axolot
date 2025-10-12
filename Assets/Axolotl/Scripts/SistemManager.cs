@@ -8,6 +8,5 @@ public class SistemManager : MonoBehaviour
     {
         cursorController.ConfinedCursorLock();
         cursorController.CursorLock();
-
     }
 }
