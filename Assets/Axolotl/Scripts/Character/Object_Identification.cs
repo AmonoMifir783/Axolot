@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Object_Identification : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Object_Identification : MonoBehaviour
         if (IsValidObject(other.gameObject))
         {
             AddObject(other.gameObject);
+            RestructArrayObjects();
         }
     }
 
@@ -18,6 +20,7 @@ public class Object_Identification : MonoBehaviour
         if (IsValidObject(other.gameObject))
         {
             RemoveObject(other.gameObject);
+            RestructArrayObjects();
         }
     }
 
@@ -35,6 +38,30 @@ public class Object_Identification : MonoBehaviour
         {
             detectedObjects.Remove(obj);
         }
+    }
+
+    private void RestructArrayObjects()
+    {
+        // определение ближайшего объекта
+    }
+
+
+    // Дополнительный метод для получения ближайшего объекта
+    public GameObject GetNearestObject()
+    {
+        if (detectedObjects.Count == 0)
+            return null;
+
+        return detectedObjects[0];
+    }
+
+    // Дополнительный метод для получения расстояния до ближайшего объекта
+    public float GetDistanceToNearest()
+    {
+        if (detectedObjects.Count == 0)
+            return float.MaxValue;
+
+        return Vector3.Distance(transform.position, detectedObjects[0].transform.position);
     }
 
     private bool IsValidObject(GameObject obj)

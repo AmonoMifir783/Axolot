@@ -7,12 +7,15 @@ public class SlotActions : MonoBehaviour
     
     public void AddItem(ItemInform item)
     {
-        if (item == null)
+        if (item != null) // Исправлено: было if (item == null)
         {    
             slot.currentItem = item;    
+            Debug.Log($"Item {item.tag} added to slot");
         }
-        
-        Debug.Log($"Item {item.tag} added to slot");
+        else
+        {
+            Debug.LogWarning("Попытка добавить null item в слот");
+        }
     }
     
     // public void ClearSlot()
@@ -23,4 +26,16 @@ public class SlotActions : MonoBehaviour
     //         slot.currentItem = null;
     //     }
     // }
+
+    // Дополнительный метод для получения текущего предмета
+    public ItemInform GetCurrentItem()
+    {
+        return slot.currentItem;
+    }
+
+    // Дополнительный метод для проверки пустоты
+    public bool IsSlotEmpty()
+    {
+        return slot == null || slot.IsEmpty;
+    }
 }
